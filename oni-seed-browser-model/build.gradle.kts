@@ -6,11 +6,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.vanniktech.mavenPublish)
     alias(libs.plugins.gitVersioning)
+    id("maven-publish")
 }
 
-group = "de.stefan_oltmann.oni"
+group = "com.github.StefanOltmann"
 
 gitVersioning.apply {
 
@@ -49,47 +49,4 @@ kotlin {
     }
 }
 
-mavenPublishing {
-
-    publishing {
-        repositories {
-            maven {
-                name = "githubPackages"
-                url = uri("https://maven.pkg.github.com/StefanOltmann/oni-seed-browser-model")
-                credentials {
-                    username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("GITHUB_TOKEN")
-                }
-            }
-        }
-    }
-
-    coordinates(
-        "de.stefan-oltmann.oni",
-        "model",
-        version.toString()
-    )
-
-    pom {
-
-        name = "ONI Seed Browser Model"
-
-        description = "Object model for the ONI Seed Browser."
-
-        url = "https://github.com/StefanOltmann/oni-seed-browser-model"
-
-        licenses {
-            license {
-                name = "AGPL"
-                url = "https://www.gnu.org/licenses/agpl-3.0.html"
-            }
-        }
-
-        developers {
-            developer {
-                name = "Stefan Oltmann"
-                url = "https://github.com/StefanOltmann"
-            }
-        }
-    }
-}
+publishing {}
