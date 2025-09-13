@@ -6,8 +6,9 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.vanniktech.mavenPublish)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.gitVersioning)
+    alias(libs.plugins.vanniktech.mavenPublish)
 }
 
 group = "de.stefan_oltmann"
