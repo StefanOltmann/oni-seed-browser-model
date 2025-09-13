@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.gitVersioning)
 }
 
-group = "de.stefan_oltmann.oni"
+group = "de.stefan_oltmann"
 
 gitVersioning.apply {
 
@@ -49,25 +49,19 @@ kotlin {
     }
 }
 
+val signingEnabled: Boolean = System.getenv("SIGNING_ENABLED")?.toBoolean() ?: false
+
 mavenPublishing {
 
-    publishing {
-        repositories {
-            maven {
-                name = "githubPackages"
-                url = uri("https://maven.pkg.github.com/StefanOltmann/oni-seed-browser-model")
-                credentials {
-                    username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("GITHUB_TOKEN")
-                }
-            }
-        }
-    }
+    publishToMavenCentral()
+
+    if (signingEnabled)
+        signAllPublications()
 
     coordinates(
-        "de.stefan-oltmann.oni",
-        "model",
-        version.toString()
+        groupId = "de.stefan-oltmann",
+        artifactId = "oni-seed-browser-model",
+        version = "$version-SNAPSHOT"
     )
 
     pom {
@@ -88,8 +82,15 @@ mavenPublishing {
         developers {
             developer {
                 name = "Stefan Oltmann"
-                url = "https://github.com/StefanOltmann"
+                url = "https://stefan-oltmann.de/"
+                roles = listOf("maintainer", "developer")
+                properties = mapOf("github" to "StefanOltmann")
             }
+        }
+
+        scm {
+            url = "https://github.com/StefanOltmann/oni-seed-browser-model"
+            connection = "scm:git:git://github.com/StefanOltmann/oni-seed-browser-model.git"
         }
     }
 }
