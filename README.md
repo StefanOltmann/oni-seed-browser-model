@@ -4,6 +4,23 @@ This is the object model for https://github.com/StefanOltmann/oni-seed-browser a
 
 It's a representation of a game map of the game [Oxygen Not Included](https://www.klei.com/games/oxygen-not-included).
 
+## Installation
+
+It's available on Maven Central Snapshot Repository.
+
+Add the snapshot repository to your `build.gradle.kts` file:
+```
+repositories {
+    mavenCentral()
+    maven(url = "https://central.sonatype.com/repository/maven-snapshots/")
+}
+```
+
+Then add this to the dependencies (where `d35090d` is to be replaced with the latest commit hash):
+```
+implementation("de.stefan-oltmann:oni-seed-browser-model:d35090d-SNAPSHOT")
+```
+
 ## Contributions
 
 Contributions to this project are welcome! If you encounter any issues,
