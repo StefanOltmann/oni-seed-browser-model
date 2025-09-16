@@ -31,12 +31,6 @@ data class Asteroid(
     @Serializable(with = AsteroidTypeSerializer::class)
     val id: AsteroidType,
 
-    @ProtoNumber(2)
-    val offsetX: Short,
-
-    @ProtoNumber(3)
-    val offsetY: Short,
-
     @ProtoNumber(4)
     val sizeX: Short,
 

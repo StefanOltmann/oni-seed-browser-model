@@ -32,9 +32,6 @@ data class UploadAsteroid(
     @Serializable(with = AsteroidTypeStringSerializer::class)
     val id: AsteroidType,
 
-    val offsetX: Short,
-    val offsetY: Short,
-
     val sizeX: Short,
     val sizeY: Short,
 

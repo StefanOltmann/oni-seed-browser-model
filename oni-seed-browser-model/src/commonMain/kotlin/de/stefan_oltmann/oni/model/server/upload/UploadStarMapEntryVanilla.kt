@@ -27,5 +27,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UploadStarMapEntryVanilla(
     val id: VanillaSpacePOI,
-    val distance: Int
+    val distance: Byte
 )
