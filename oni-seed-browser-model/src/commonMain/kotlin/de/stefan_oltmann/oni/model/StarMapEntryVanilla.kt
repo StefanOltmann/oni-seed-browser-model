@@ -30,5 +30,5 @@ data class StarMapEntryVanilla(
     val id: VanillaSpacePOI,
 
     @ProtoNumber(2)
-    val distance: Int
+    val distance: Byte
 )
