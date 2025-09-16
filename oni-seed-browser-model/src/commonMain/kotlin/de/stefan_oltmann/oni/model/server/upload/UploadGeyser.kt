@@ -57,8 +57,8 @@ data class UploadGeyser(
     val eruptionTime: Short,
 
     /** Count of dormancy cycles. */
-    val dormancyCycles: Float,
+    val dormancyCycles: Int,
 
     /** Count of active cycles. */
-    val activeCycles: Float
+    val activeCycles: Int
 )
