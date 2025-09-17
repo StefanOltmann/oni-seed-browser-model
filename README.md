@@ -1,5 +1,8 @@
 # ONI Seed Browser object model
 
+[![Kotlin](https://img.shields.io/badge/kotlin-2.2.20-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
+[![Sponsors](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/StefanOltmann)
+
 This is the object model for https://github.com/StefanOltmann/oni-seed-browser as a KMP library.
 
 It's a representation of a game map of the game [Oxygen Not Included](https://www.klei.com/games/oxygen-not-included).
