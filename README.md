@@ -1,7 +1,7 @@
 # ONI Seed Browser object model
 
-[![Kotlin](https://img.shields.io/badge/kotlin-2.2.20-blue.svg?logo=kotlin)](httpw://kotlinlang.org)
-[![Sponsors](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/StefanOltmann)
+![Kotlin](https://img.shields.io/badge/kotlin-2.2.20-blue.svg?logo=kotlin)
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-gray?&logo=GitHub-Sponsors&logoColor=EA4AAA)](https://github.com/sponsors/StefanOltmann)
 
 This is the object model for https://github.com/StefanOltmann/oni-seed-browser as a KMP library.
 
