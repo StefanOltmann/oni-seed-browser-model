@@ -673,4 +673,26 @@ enum class ClusterType(
 
     fun isBaseGame(): Boolean =
         requiredDlcs.contains(Dlc.BaseGame)
+
+    companion object {
+
+        val allClusterTypesRegex =
+            Regex(createRegexPattern(Dlc.entries))
+
+        fun createRegexPattern(dlcs: List<Dlc>): String {
+
+            val clusterPrefixes = mutableListOf<String>()
+
+            for (clusterType in ClusterType.entries)
+                if (clusterType.dlcRequirementsFulfilled(dlcs))
+                    clusterPrefixes.add(clusterType.prefix)
+
+            val clusterPrefixesJoined = clusterPrefixes.joinToString("|")
+
+            return "^($clusterPrefixesJoined)-\\d+-0-0-[^-]*"
+        }
+
+        fun isValidCoordinate(coordinate: String): Boolean =
+            allClusterTypesRegex.matches(coordinate)
+    }
 }
