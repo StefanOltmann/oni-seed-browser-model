@@ -18,7 +18,10 @@
  */
 package de.stefan_oltmann.oni.model.server
 
+import de.stefan_oltmann.oni.model.ClusterType
 import kotlinx.serialization.Serializable
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  * This is the format expected to be sent from the mod
@@ -36,4 +39,67 @@ data class FailedGenReport(
 
     val coordinate: String
 
-)
+) {
+
+    val uploadSteamId: String? = if (userId.startsWith("Steam-"))
+        userId.drop(6)
+    else
+        null
+
+    @OptIn(ExperimentalUuidApi::class)
+    fun check(
+        tokenSteamId: String
+    ): FailedGenReportCheckResult {
+
+        /* InstallationId must be valid UUID */
+        try {
+            Uuid.parse(installationId)
+        } catch (_: IllegalArgumentException) {
+            return FailedGenReportCheckResult.Error("Invalid 'installationId': $installationId")
+        }
+
+        return when {
+
+            /* InstallationId is mandatory */
+            installationId.isBlank() ->
+                FailedGenReportCheckResult.Error("Missing 'installationId'")
+
+            /* UserId is mandatory */
+            userId.isBlank() ->
+                FailedGenReportCheckResult.Error("Missing 'userId'")
+
+            /* We only accept the Steam version */
+            uploadSteamId == null ->
+                FailedGenReportCheckResult.Error("User ID was not Steam: $userId")
+
+            /* Steam ID in upload must match Steam ID in token */
+            uploadSteamId != tokenSteamId ->
+                FailedGenReportCheckResult.Error("Steam ID mismatch: $uploadSteamId != $tokenSteamId")
+
+            /* Game version must be set */
+            gameVersion.isBlank() ->
+                FailedGenReportCheckResult.Error("Missing 'gameVersion'")
+
+            /* File hashes must be set */
+            fileHashes.isEmpty() ->
+                FailedGenReportCheckResult.Error("Missing 'fileHashes'")
+
+            /* ModHash must be set */
+            fileHashes["modHash"].isNullOrBlank() ->
+                FailedGenReportCheckResult.Error("Missing 'fileHashes.modHash'")
+
+            /* Coordinate must be set */
+            coordinate.isBlank() ->
+                FailedGenReportCheckResult.Error("Missing 'cluster.coordinate'")
+
+            /* Coordinate must be valid */
+            !ClusterType.isValidCoordinate(coordinate) ->
+                FailedGenReportCheckResult.Error("Invalid 'cluster.coordinate': $coordinate")
+
+            /*
+             * If none of the issues above are present, the upload is accepted.
+             */
+            else -> FailedGenReportCheckResult.Okay
+        }
+    }
+}
