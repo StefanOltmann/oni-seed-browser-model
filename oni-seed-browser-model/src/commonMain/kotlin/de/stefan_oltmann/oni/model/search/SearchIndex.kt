@@ -33,6 +33,7 @@ class SearchIndex(
     /**
      * Sorts the search index for consistent query results.
      */
+    @Suppress("unused")
     fun sort() = summaries.sortedBy { it.seed }
 
     /**
@@ -53,6 +54,7 @@ class SearchIndex(
      *   so we compute total = avgOutput * count for comparisons.
      * - AND-of-OR semantics: each inner list is OR-connected; the outer list is AND-connected.
      */
+    @Suppress("unused")
     fun match(
         filterQuery: FilterQuery
     ): List<String> {
@@ -209,6 +211,28 @@ class SearchIndex(
 
         }.map {
             clusterType.prefix + "-" + it.seed + "-0-0-" + (it.remix ?: "0")
+        }
+    }
+
+    companion object {
+
+        @Suppress("unused")
+        fun create(
+            clusterType: ClusterType,
+            timestamp: Long,
+            summaries: List<ClusterSummaryCompact>
+        ): SearchIndex {
+
+            val searchIndex = SearchIndex(
+                clusterType = clusterType,
+                timestamp = timestamp
+            )
+
+            searchIndex._summaries.addAll(summaries)
+
+            searchIndex.sort()
+
+            return searchIndex
         }
     }
 }
