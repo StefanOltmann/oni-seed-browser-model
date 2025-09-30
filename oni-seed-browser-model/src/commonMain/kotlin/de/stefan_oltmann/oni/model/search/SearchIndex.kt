@@ -31,12 +31,6 @@ class SearchIndex(
     val summaries: List<ClusterSummaryCompact> = _summaries
 
     /**
-     * Sorts the search index for consistent query results.
-     */
-    @Suppress("unused")
-    fun sort() = summaries.sortedBy { it.seed }
-
-    /**
      * Adds a cluster to the search index.
      */
     fun add(cluster: Cluster) {
@@ -229,8 +223,6 @@ class SearchIndex(
             )
 
             searchIndex._summaries.addAll(summaries)
-
-            searchIndex.sort()
 
             return searchIndex
         }
