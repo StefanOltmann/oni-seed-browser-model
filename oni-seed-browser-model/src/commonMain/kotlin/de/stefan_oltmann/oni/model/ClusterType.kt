@@ -689,7 +689,7 @@ enum class ClusterType(
 
             val clusterPrefixesJoined = clusterPrefixes.joinToString("|")
 
-            return "^($clusterPrefixesJoined)-\\d+-0-0-[^-]*"
+            return "^($clusterPrefixesJoined)-[0-9]+-0-0-[^-]*"
         }
 
         fun isValidCoordinate(coordinate: String): Boolean =
