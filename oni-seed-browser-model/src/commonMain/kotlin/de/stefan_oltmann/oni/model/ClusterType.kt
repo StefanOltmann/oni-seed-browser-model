@@ -665,7 +665,7 @@ enum class ClusterType(
         starMapRadius = 14
     );
 
-    fun dlcRequirementsFulfilled(requirements: List<Dlc>): Boolean =
+    fun dlcRequirementsFulfilled(requirements: Collection<Dlc>): Boolean =
         requirements.containsAll(requiredDlcs)
 
     fun isFrostyPlanet(): Boolean =
@@ -679,13 +679,14 @@ enum class ClusterType(
         val allClusterTypesRegex =
             Regex(createRegexPattern(Dlc.entries))
 
+        fun createClusterPrefixesList(dlcs: Collection<Dlc>): List<String> =
+            ClusterType.entries
+                .filter { it.dlcRequirementsFulfilled(dlcs) }
+                .map { it.prefix }
+
         fun createRegexPattern(dlcs: List<Dlc>): String {
 
-            val clusterPrefixes = mutableListOf<String>()
-
-            for (clusterType in ClusterType.entries)
-                if (clusterType.dlcRequirementsFulfilled(dlcs))
-                    clusterPrefixes.add(clusterType.prefix)
+            val clusterPrefixes = createClusterPrefixesList(dlcs)
 
             val clusterPrefixesJoined = clusterPrefixes.joinToString("|")
 
