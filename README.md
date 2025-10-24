@@ -13,6 +13,7 @@ It's a representation of a game map of the game [Oxygen Not Included](https://ww
 It's available on Maven Central Snapshot Repository.
 
 Add the snapshot repository to your `build.gradle.kts` file:
+
 ```
 repositories {
     mavenCentral()
@@ -21,6 +22,7 @@ repositories {
 ```
 
 Then add this to the dependencies (where `d35090d` is to be replaced with the latest commit hash):
+
 ```
 implementation("de.stefan-oltmann:oni-seed-browser-model:d35090d-SNAPSHOT")
 ```
