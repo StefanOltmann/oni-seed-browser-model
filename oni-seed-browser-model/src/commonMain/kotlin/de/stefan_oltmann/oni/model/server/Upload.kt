@@ -34,7 +34,7 @@ data class Upload(
 
     val installationId: String,
 
-    val gameVersion: String,
+    val gameVersion: Int,
 
     val fileHashes: Map<String, String>,
 
@@ -79,7 +79,7 @@ data class Upload(
                 UploadCheckResult.Error("Steam ID mismatch: $uploadSteamId != $tokenSteamId")
 
             /* Game version must be set */
-            gameVersion.isBlank() ->
+            gameVersion == 0 ->
                 UploadCheckResult.Error("Missing 'gameVersion'")
 
             /* File hashes must be set */

@@ -33,7 +33,7 @@ data class FailedGenReport(
 
     val installationId: String,
 
-    val gameVersion: String,
+    val gameVersion: Int,
 
     val fileHashes: Map<String, String>,
 
@@ -77,7 +77,7 @@ data class FailedGenReport(
                 FailedGenReportCheckResult.Error("Steam ID mismatch: $uploadSteamId != $tokenSteamId")
 
             /* Game version must be set */
-            gameVersion.isBlank() ->
+            gameVersion == 0 ->
                 FailedGenReportCheckResult.Error("Missing 'gameVersion'")
 
             /* File hashes must be set */
