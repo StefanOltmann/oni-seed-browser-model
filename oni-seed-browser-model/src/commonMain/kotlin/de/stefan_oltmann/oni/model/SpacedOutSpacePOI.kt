@@ -230,7 +230,7 @@ enum class SpacedOutSpacePOI(
     WarpOilySandySwamp(69),
 
     /*
-     * Others
+     * Artifacts
      */
 
     ArtifactSpacePOI_GravitasSpaceStation1(70),
@@ -242,6 +242,11 @@ enum class SpacedOutSpacePOI(
     ArtifactSpacePOI_GravitasSpaceStation7(76),
     ArtifactSpacePOI_GravitasSpaceStation8(77),
     ArtifactSpacePOI_RussellsTeapot(78),
+
+    /*
+     * Harvestables
+     */
+
     HarvestableSpacePOI_CarbonAsteroidField(79),
     HarvestableSpacePOI_ChlorineCloud(80),
     HarvestableSpacePOI_DLC2CeresField(81),
@@ -272,5 +277,16 @@ enum class SpacedOutSpacePOI(
     HarvestableSpacePOI_DLC4ImpactorDebrisField1(106),
     HarvestableSpacePOI_DLC4ImpactorDebrisField2(107),
     HarvestableSpacePOI_DLC4ImpactorDebrisField3(108),
-    TemporalTear(109)
+
+    /*
+     * Story items
+     */
+
+    TemporalTear(109),
+
+    /*
+     * Dummy entries
+     */
+
+    StarmapHexCellInventory(110)
 }
