@@ -60,7 +60,7 @@ mavenPublishing {
     coordinates(
         groupId = "de.stefan-oltmann",
         artifactId = "oni-seed-browser-model",
-        version = "$version-SNAPSHOT"
+        version = "$version"
     )
 
     pom {
