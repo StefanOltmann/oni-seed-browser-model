@@ -2,7 +2,13 @@ name: Publish library
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - main
 
 jobs:
   
@@ -31,6 +37,7 @@ jobs:
           ./gradlew build allTests
 
       - name: Publish to Maven Central
+        if: startsWith(github.ref, 'refs/tags/') # Only for releases
         run: ./gradlew publishToMavenCentral --no-configuration-cache
         env:
           SIGNING_ENABLED: true
