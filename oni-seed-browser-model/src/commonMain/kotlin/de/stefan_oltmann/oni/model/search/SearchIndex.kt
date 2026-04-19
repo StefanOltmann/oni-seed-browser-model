@@ -2,11 +2,13 @@ package de.stefan_oltmann.oni.model.search
 
 import de.stefan_oltmann.oni.model.Cluster
 import de.stefan_oltmann.oni.model.ClusterType
+import de.stefan_oltmann.oni.model.Dlc
 import de.stefan_oltmann.oni.model.GeyserType
 import de.stefan_oltmann.oni.model.WorldTrait
 import de.stefan_oltmann.oni.model.ZoneType
 import de.stefan_oltmann.oni.model.filter.FilterCondition
 import de.stefan_oltmann.oni.model.filter.FilterQuery
+import de.stefan_oltmann.oni.model.mixing.GameSettings
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -68,7 +70,33 @@ class SearchIndex(
                 return@filter false
 
             /*
+             * If it's a remixed map, we need to check if filter DLC settings
+             * match active DLCs determined by remix code.
+             */
+            if (effectiveRemix != "0") {
+
+                try {
+
+                    val gameSettings = GameSettings.fromRemixCode(effectiveRemix)
+
+                    val activeDlcs = gameSettings.getActiveDlcs()
+
+                    for (dlc in checkedDlcs)
+                        if (activeDlcs.contains(dlc) && !filterQuery.dlcs.contains(dlc))
+                            return@filter false
+
+                } catch (ex: Exception) {
+
+                    /* Just report and ignore invalid data. */
+                    println("Failed to parse remix code: $effectiveRemix")
+
+                    return@filter false
+                }
+            }
+
+            /*
              * If there are no filter rules, we have a match.
+             * Note: Remix filter always must be checked first.
              */
             if (filterQuery.rules.isEmpty())
                 return@filter true
@@ -209,6 +237,15 @@ class SearchIndex(
     }
 
     companion object {
+
+        /*
+         * We only check Frosty Planet & Prehistoric Planet as these
+         * are selectable in the UI and relevant for mixing.
+         */
+        val checkedDlcs = mutableSetOf(
+            Dlc.FrostyPlanet,
+            Dlc.PrehistoricPlanet
+        )
 
         @Suppress("unused")
         fun create(
