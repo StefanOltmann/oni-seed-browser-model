@@ -172,7 +172,7 @@ class GameSettingsTest {
 
         for (item in MixingItem.entries) {
 
-            if (item.levels.size == 2)
+            if (item is MixingItem.DlcMixingItem)
                 gameSettings.setMixingLevel(item, MixingLevel.ENABLED)
             else
                 gameSettings.setMixingLevel(item, MixingLevel.GUARANTEED)
@@ -231,7 +231,7 @@ class GameSettingsTest {
 
         for (item in MixingItem.entries) {
             val expected = when {
-                item.levels.size == 2 -> MixingLevel.ENABLED
+                item is MixingItem.DlcMixingItem -> MixingLevel.ENABLED
                 else -> MixingLevel.GUARANTEED
             }
             assertEquals(expected, parsed.getMixingLevel(item))
@@ -259,7 +259,7 @@ class GameSettingsTest {
 
             for (item in MixingItem.entries) {
 
-                val randomLevel = item.levels.random()
+                val randomLevel = MixingLevel.entries.random()
 
                 original.setMixingLevel(item, randomLevel)
             }

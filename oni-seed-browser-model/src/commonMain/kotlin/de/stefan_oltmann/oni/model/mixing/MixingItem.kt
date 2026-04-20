@@ -22,30 +22,22 @@ import de.stefan_oltmann.oni.model.AsteroidType
 import de.stefan_oltmann.oni.model.Dlc
 import de.stefan_oltmann.oni.model.ZoneType
 
-sealed class MixingItem private constructor(
-    val levels: List<MixingLevel>
-) {
+sealed class MixingItem private constructor() {
 
     sealed class DlcMixingItem(
         val dlc: Dlc
-    ) : MixingItem(
-        levels = listOf(MixingLevel.DISABLED, MixingLevel.ENABLED)
-    )
+    ) : MixingItem()
 
     sealed class AsteroidMixingItem(
         val asteroidType: AsteroidType
-    ) : MixingItem(
-        levels = listOf(MixingLevel.DISABLED, MixingLevel.ENABLED, MixingLevel.GUARANTEED)
-    )
+    ) : MixingItem()
 
     sealed class ZoneTypeMixingItem(
         val zoneType: ZoneType
-    ) : MixingItem(
-        levels = listOf(MixingLevel.DISABLED, MixingLevel.ENABLED, MixingLevel.GUARANTEED)
-    )
+    ) : MixingItem()
 
     fun getLevel(coordinateValue: Int): MixingLevel =
-        levels.getOrElse(coordinateValue) { MixingLevel.DISABLED }
+        MixingLevel.entries.getOrElse(coordinateValue) { MixingLevel.DISABLED }
 
     /* Frosty Planet Pack */
     data object DlcFrostyPlanet : DlcMixingItem(Dlc.FrostyPlanet)

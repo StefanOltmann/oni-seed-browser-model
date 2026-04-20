@@ -94,7 +94,7 @@ class GameSettings {
 
                 val coordinateValue = (binary % COORDINATE_RANGE)
 
-                require(coordinateValue < mixingItem.levels.size) {
+                require(coordinateValue < MixingLevel.entries.size) {
                     "Invalid Mixing String: Level $coordinateValue is not possible for $mixingItem"
                 }
 

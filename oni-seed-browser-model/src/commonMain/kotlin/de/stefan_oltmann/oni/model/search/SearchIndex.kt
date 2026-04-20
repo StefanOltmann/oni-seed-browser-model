@@ -88,7 +88,7 @@ class SearchIndex(
                 } catch (ex: Exception) {
 
                     /* Just report and ignore invalid data. */
-                    println("Failed to parse remix code: $effectiveRemix")
+                    println("Failed to parse remix code: $effectiveRemix: ${ex.stackTraceToString()}")
 
                     return@filter false
                 }
