@@ -225,6 +225,15 @@ enum class AsteroidType(
 
     MixingPrehistoricAsteroid(68),
 
-    WarpOilySandySwamp(69)
+    WarpOilySandySwamp(69),
+
+    AquaticBaseGameAsteroid(70),
+
+    MixingAquaticAsteroid(71),
+
+    AquaticClassicAsteroid(72),
+
+    AquaticSpacedOutAsteroid(73),
+
 
 }

@@ -82,6 +82,16 @@ enum class ClusterType(
         exportCollection = ClusterExportCollection.BASEGAME
     ),
 
+    /** Marinea */
+    BASE_MARINEA(
+        id = 38,
+        prefix = "AQU-A",
+        requiredDlcs = listOf(Dlc.BaseGame, Dlc.AquaticPlanet),
+        gameMode = GameModeType.BASEGAME_STANDARD,
+        asteroidTypes = listOf(AsteroidType.AquaticBaseGameAsteroid),
+        exportCollection = ClusterExportCollection.BASEGAME
+    ),
+
     /** Oceania */
     BASE_OCEANIA(
         id = 5,
@@ -246,6 +256,24 @@ enum class ClusterType(
         gameMode = GameModeType.SPACEDOUT_THELAB,
         asteroidTypes = listOf(
             AsteroidType.PrehistoricShatteredClassicAsteroid,
+            AsteroidType.MediumSwampy,
+            AsteroidType.TundraMoonlet,
+            AsteroidType.MarshyMoonlet,
+            AsteroidType.NiobiumMoonlet,
+            AsteroidType.MooMoonlet,
+            AsteroidType.WaterMoonlet,
+            AsteroidType.MiniRegolithMoonlet
+        ),
+        exportCollection = ClusterExportCollection.CLASSIC_2
+    ),
+
+    DLC_MARINEA(
+        id = 39,
+        prefix = "V-AQU-C",
+        requiredDlcs = listOf(Dlc.SpacedOut, Dlc.AquaticPlanet),
+        gameMode = GameModeType.SPACEDOUT_CLASSIC,
+        asteroidTypes = listOf(
+            AsteroidType.AquaticClassicAsteroid,
             AsteroidType.MediumSwampy,
             AsteroidType.TundraMoonlet,
             AsteroidType.MarshyMoonlet,
@@ -476,6 +504,26 @@ enum class ClusterType(
         gameMode = GameModeType.SPACEDOUT_SPACEDOUT,
         asteroidTypes = listOf(
             AsteroidType.PrehistoricSpacedOutAsteroid,
+            AsteroidType.IdealLandingSite,
+            AsteroidType.WarpOilySandySwamp,
+            AsteroidType.TundraMoonlet,
+            AsteroidType.MarshyMoonlet,
+            AsteroidType.MooMoonlet,
+            AsteroidType.WaterMoonlet,
+            AsteroidType.NiobiumMoonlet,
+            AsteroidType.RegolithMoonlet
+        ),
+        exportCollection = ClusterExportCollection.SPACEDOUT
+    ),
+
+    /** Marinea Minor Cluster */
+    DLC_MARINEA_MINOR(
+        id = 40,
+        prefix = "AQU-C",
+        requiredDlcs = listOf(Dlc.SpacedOut, Dlc.AquaticPlanet),
+        gameMode = GameModeType.SPACEDOUT_SPACEDOUT,
+        asteroidTypes = listOf(
+            AsteroidType.AquaticSpacedOutAsteroid,
             AsteroidType.IdealLandingSite,
             AsteroidType.WarpOilySandySwamp,
             AsteroidType.TundraMoonlet,

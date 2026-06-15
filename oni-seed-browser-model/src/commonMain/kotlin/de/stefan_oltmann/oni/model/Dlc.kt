@@ -30,10 +30,11 @@ enum class Dlc(
     SpacedOut(true),
     FrostyPlanet(false),
     BionicBooster(false),
-    PrehistoricPlanet(false);
+    PrehistoricPlanet(false),
+    AquaticPlanet(false);
 
     companion object {
 
-        val selectableDlcs = listOf(FrostyPlanet, PrehistoricPlanet)
+        val selectableDlcs = listOf(FrostyPlanet, PrehistoricPlanet, AquaticPlanet)
     }
 }

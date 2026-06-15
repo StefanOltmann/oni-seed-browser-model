@@ -277,6 +277,9 @@ enum class SpacedOutSpacePOI(
     HarvestableSpacePOI_DLC4ImpactorDebrisField1(106),
     HarvestableSpacePOI_DLC4ImpactorDebrisField2(107),
     HarvestableSpacePOI_DLC4ImpactorDebrisField3(108),
+    HarvestableSpacePOI_DLC5AquaticMixingField(111),
+    HarvestableSpacePOI_DLC5AquaticOreField(112),
+
 
     /*
      * Story items

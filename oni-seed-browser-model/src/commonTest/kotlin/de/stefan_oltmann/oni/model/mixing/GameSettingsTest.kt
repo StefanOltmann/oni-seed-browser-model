@@ -46,8 +46,6 @@ class GameSettingsTest {
         gameSettings.setMixingLevel(MixingItem.SugarWoods, MixingLevel.ENABLED)
         gameSettings.setMixingLevel(MixingItem.Raptor, MixingLevel.GUARANTEED)
 
-        val activeMixings = gameSettings.getActiveMixings()
-
         val activeDlcs = gameSettings.getActiveMixings()
 
         assertEquals(
@@ -213,14 +211,22 @@ class GameSettingsTest {
         val parsed = GameSettings.fromRemixCode("J3ET5")
 
         for (item in MixingItem.entries) {
+
             val expected = when (item) {
                 MixingItem.DlcFrostyPlanet,
                 MixingItem.DlcBionicBooster,
-                MixingItem.DlcPrehistoricPlanet -> MixingLevel.ENABLED
+                MixingItem.DlcPrehistoricPlanet,
+                    // MixingItem.DlcAquaticPlanet
+                    -> MixingLevel.ENABLED
 
                 else -> MixingLevel.DISABLED
             }
-            assertEquals(expected, parsed.getMixingLevel(item))
+
+            assertEquals(
+                expected = expected,
+                actual = parsed.getMixingLevel(item),
+                message = "Mismatch for $item"
+            )
         }
     }
 

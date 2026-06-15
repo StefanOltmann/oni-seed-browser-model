@@ -63,6 +63,12 @@ enum class ZoneType(
     PrehistoricRaptor(22),
     PrehistoricWetlands(23),
 
+    /* Marinea */
+    KelpForest(24),
+    Reef(25),
+    Abyss(26),
+    Beach(27),
+
     /* Most of the time right above the magma biome. */
     OilField(6),
 

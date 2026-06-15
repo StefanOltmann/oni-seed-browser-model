@@ -56,6 +56,14 @@ sealed class MixingItem private constructor() {
     data object Wetlands : ZoneTypeMixingItem(ZoneType.PrehistoricWetlands)
     data object PrehistoricAsteroid : AsteroidMixingItem(AsteroidType.MixingPrehistoricAsteroid)
 
+    /* Aquatic Planet Pack */
+    data object DlcAquaticPlanet : DlcMixingItem(Dlc.AquaticPlanet)
+    data object Beach : ZoneTypeMixingItem(ZoneType.Beach)
+    data object Reef : ZoneTypeMixingItem(ZoneType.Reef)
+    data object KelpForest : ZoneTypeMixingItem(ZoneType.KelpForest)
+    data object Abyss : ZoneTypeMixingItem(ZoneType.Abyss)
+    data object AquaticAsteroid : AsteroidMixingItem(AsteroidType.MixingAquaticAsteroid)
+
     companion object {
 
         val entries: List<MixingItem> = listOf(
@@ -75,7 +83,15 @@ sealed class MixingItem private constructor() {
             Garden,
             Raptor,
             Wetlands,
-            PrehistoricAsteroid
+            PrehistoricAsteroid,
+
+//            /* Aquatic Planet Pack */
+//            DlcAquaticPlanet,
+//            Beach,
+//            Reef,
+//            KelpForest,
+//            Abyss,
+//            AquaticAsteroid
         )
     }
 }
