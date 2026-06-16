@@ -29,7 +29,7 @@ class ClusterTypeTest {
     fun testCreateRegexPattern() {
 
         assertEquals(
-            expected = "^(SNDST-A|CER-A|CERS-A|PRE-A|PRES-A|OCAN-A|S-FRZ|LUSH-A|FRST-A|VOLCA|BAD-A|HTFST-A|OASIS-A|V-SNDST-C|V-CER-C|V-CERS-C|V-PRE-C|V-PRES-C|V-OCAN-C|V-SWMP-C|V-SFRZ-C|V-LUSH-C|V-FRST-C|V-VOLCA-C|V-BAD-C|V-HTFST-C|V-OASIS-C|SNDST-C|CER-C|PRE-C|FRST-C|SWMP-C|M-SWMP-C|M-BAD-C|M-FRZ-C|M-FLIP-C|M-RAD-C|M-CERS-C)-[0-9]+-0-0-[^-]*",
+            expected = "^(SNDST-A|CER-A|CERS-A|PRE-A|PRES-A|AQU-A|OCAN-A|S-FRZ|LUSH-A|FRST-A|VOLCA|BAD-A|HTFST-A|OASIS-A|V-SNDST-C|V-CER-C|V-CERS-C|V-PRE-C|V-PRES-C|V-AQU-C|V-OCAN-C|V-SWMP-C|V-SFRZ-C|V-LUSH-C|V-FRST-C|V-VOLCA-C|V-BAD-C|V-HTFST-C|V-OASIS-C|SNDST-C|CER-C|PRE-C|AQU-C|FRST-C|SWMP-C|M-SWMP-C|M-BAD-C|M-FRZ-C|M-FLIP-C|M-RAD-C|M-CERS-C)-[0-9]+-0-0-[^-]*",
             actual = ClusterType.createRegexPattern(Dlc.entries)
         )
 
@@ -49,6 +49,11 @@ class ClusterTypeTest {
         )
 
         assertEquals(
+            expected = "^(SNDST-A|AQU-A|OCAN-A|S-FRZ|LUSH-A|FRST-A|VOLCA|BAD-A|HTFST-A|OASIS-A)-[0-9]+-0-0-[^-]*",
+            actual = ClusterType.createRegexPattern(listOf(Dlc.BaseGame, Dlc.AquaticPlanet))
+        )
+
+        assertEquals(
             expected = "^(V-SNDST-C|V-OCAN-C|V-SWMP-C|V-SFRZ-C|V-LUSH-C|V-FRST-C|V-VOLCA-C|V-BAD-C|V-HTFST-C|V-OASIS-C|SNDST-C|FRST-C|SWMP-C|M-SWMP-C|M-BAD-C|M-FRZ-C|M-FLIP-C|M-RAD-C)-[0-9]+-0-0-[^-]*",
             actual = ClusterType.createRegexPattern(listOf(Dlc.SpacedOut))
         )
@@ -61,6 +66,11 @@ class ClusterTypeTest {
         assertEquals(
             expected = "^(V-SNDST-C|V-PRE-C|V-PRES-C|V-OCAN-C|V-SWMP-C|V-SFRZ-C|V-LUSH-C|V-FRST-C|V-VOLCA-C|V-BAD-C|V-HTFST-C|V-OASIS-C|SNDST-C|PRE-C|FRST-C|SWMP-C|M-SWMP-C|M-BAD-C|M-FRZ-C|M-FLIP-C|M-RAD-C)-[0-9]+-0-0-[^-]*",
             actual = ClusterType.createRegexPattern(listOf(Dlc.SpacedOut, Dlc.PrehistoricPlanet))
+        )
+
+        assertEquals(
+            expected = "^(V-SNDST-C|V-AQU-C|V-OCAN-C|V-SWMP-C|V-SFRZ-C|V-LUSH-C|V-FRST-C|V-VOLCA-C|V-BAD-C|V-HTFST-C|V-OASIS-C|SNDST-C|AQU-C|FRST-C|SWMP-C|M-SWMP-C|M-BAD-C|M-FRZ-C|M-FLIP-C|M-RAD-C)-[0-9]+-0-0-[^-]*",
+            actual = ClusterType.createRegexPattern(listOf(Dlc.SpacedOut, Dlc.AquaticPlanet))
         )
     }
 
