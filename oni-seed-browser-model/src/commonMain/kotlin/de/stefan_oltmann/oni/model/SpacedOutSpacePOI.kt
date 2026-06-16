@@ -288,7 +288,6 @@ enum class SpacedOutSpacePOI(
     HarvestableSpacePOI_DLC5AquaticMixingField(111),
     HarvestableSpacePOI_DLC5AquaticOreField(112),
 
-
     /*
      * Story items
      */
