@@ -267,6 +267,36 @@ enum class GeyserType(
         maxAvgEmitRate = 3333,
         meanAvgEmitRate = 3333,
         avgEmitRateStdDev = 0
+    ),
+    TIDAL_SPRING(
+        id = 27,
+        type = "SmallReefGeyser",
+        minAvgEmitRate = 0,
+        maxAvgEmitRate = 0,
+        meanAvgEmitRate = 0,
+        avgEmitRateStdDev = 0
+    ),
+    POLLUTED_BRINE(
+        id = 28,
+        type = "murky_brine",
+        /*
+         * FIXME Check these numbers for correctness
+         */
+        minAvgEmitRate = 1333,
+        maxAvgEmitRate = 5333,
+        meanAvgEmitRate = 3000,
+        avgEmitRateStdDev = 400
+    ),
+    THERMAL_GAS_FISSURE(
+        id = 29,
+        type = "UnderwaterVent",
+        /*
+         * FIXME Check these numbers for correctness
+         */
+        minAvgEmitRate = 1,
+        maxAvgEmitRate = 333,
+        meanAvgEmitRate = 83,
+        avgEmitRateStdDev = 35
     );
 
     val lowAvgEmitRate = meanAvgEmitRate - avgEmitRateStdDev
