@@ -233,7 +233,6 @@ enum class AsteroidType(
 
     AquaticClassicAsteroid(72),
 
-    AquaticSpacedOutAsteroid(73),
-
+    AquaticSpacedOutAsteroid(73)
 
 }

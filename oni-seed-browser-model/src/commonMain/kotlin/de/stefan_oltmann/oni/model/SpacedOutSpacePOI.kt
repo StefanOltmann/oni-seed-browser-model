@@ -229,6 +229,14 @@ enum class SpacedOutSpacePOI(
 
     WarpOilySandySwamp(69),
 
+    AquaticBaseGameAsteroid(113),
+
+    MixingAquaticAsteroid(114),
+
+    AquaticClassicAsteroid(115),
+
+    AquaticSpacedOutAsteroid(116),
+
     /*
      * Artifacts
      */
