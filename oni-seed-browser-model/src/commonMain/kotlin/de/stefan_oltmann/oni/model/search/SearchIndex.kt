@@ -9,6 +9,7 @@ import de.stefan_oltmann.oni.model.ZoneType
 import de.stefan_oltmann.oni.model.filter.FilterCondition
 import de.stefan_oltmann.oni.model.filter.FilterQuery
 import de.stefan_oltmann.oni.model.mixing.GameSettings
+import de.stefan_oltmann.oni.model.serializer.ClusterTypeSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -19,6 +20,7 @@ import kotlinx.serialization.protobuf.ProtoNumber
 class SearchIndex(
 
     @ProtoNumber(1)
+    @Serializable(with = ClusterTypeSerializer::class)
     val clusterType: ClusterType,
 
     @ProtoNumber(2)
