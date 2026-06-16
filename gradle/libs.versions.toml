@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.3.20"
+kotlin = "2.4.0"
 vanniktechMavenPublish = "0.34.0"
 serialization = "1.11.0"
 gitVersioning = "6.4.4"
