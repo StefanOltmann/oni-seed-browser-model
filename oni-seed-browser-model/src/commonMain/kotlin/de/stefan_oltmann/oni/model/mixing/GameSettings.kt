@@ -59,7 +59,7 @@ class GameSettings {
 
     fun getMixingSettingsCode(): String {
 
-        var input = 0
+        var input: Long = 0
 
         for (mixingItem in MixingItem.entries) {
 
@@ -80,11 +80,11 @@ class GameSettings {
          * Coordinate range for all mixing items so far was 5,
          * so we use this constant for simplicity.
          */
-        private const val COORDINATE_RANGE = 5
+        private const val COORDINATE_RANGE: Long = 5
 
         fun fromRemixCode(code: String): GameSettings {
 
-            var binary: Int = base36ToBinary(code.uppercase())
+            var binary: Long = base36ToBinary(input = code.uppercase())
 
             val gameSettings = GameSettings()
 
@@ -92,7 +92,7 @@ class GameSettings {
 
                 val mixingItem = MixingItem.entries[index]
 
-                val coordinateValue = (binary % COORDINATE_RANGE)
+                val coordinateValue: Long = (binary % COORDINATE_RANGE)
 
                 require(coordinateValue < MixingLevel.entries.size) {
                     "Invalid Mixing String: Level $coordinateValue is not possible for $mixingItem"
@@ -106,24 +106,24 @@ class GameSettings {
                 )
             }
 
-            if (binary != 0)
+            if (binary != 0L)
                 error("Invalid Mixing String: bigInteger not 0 after all settings extracted")
 
             return gameSettings
         }
 
-        private fun binaryToBase36(input: Int): String {
+        private fun binaryToBase36(input: Long): String {
 
-            if (input == 0)
+            if (input == 0L)
                 return "0"
 
             return buildString {
 
-                var value: Int = input
+                var value: Long = input
 
                 while (value > 0) {
 
-                    val remainder = (value % BASE36_BASE)
+                    val remainder: Int = (value % BASE36_BASE).toInt()
 
                     append(BASE36_ALPHABET[remainder])
 
@@ -132,16 +132,16 @@ class GameSettings {
             }
         }
 
-        private fun base36ToBinary(input: String): Int {
+        private fun base36ToBinary(input: String): Long {
 
             if (input == "0")
                 return 0
 
-            var output = 0
+            var output: Long = 0
 
             for (index in input.length - 1 downTo 0) {
 
-                val digit = BASE36_ALPHABET.indexOf(input[index])
+                val digit = BASE36_ALPHABET.indexOf(char = input[index])
 
                 output = output * BASE36_BASE + digit
             }

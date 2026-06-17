@@ -36,8 +36,8 @@ sealed class MixingItem private constructor() {
         val zoneType: ZoneType
     ) : MixingItem()
 
-    fun getLevel(coordinateValue: Int): MixingLevel =
-        MixingLevel.entries.getOrElse(coordinateValue) { MixingLevel.DISABLED }
+    fun getLevel(coordinateValue: Long): MixingLevel =
+        MixingLevel.entries.getOrElse(index = coordinateValue.toInt()) { MixingLevel.DISABLED }
 
     /* Frosty Planet Pack */
     data object DlcFrostyPlanet : DlcMixingItem(Dlc.FrostyPlanet)
@@ -85,13 +85,19 @@ sealed class MixingItem private constructor() {
             Wetlands,
             PrehistoricAsteroid,
 
-//            /* Aquatic Planet Pack */
-//            DlcAquaticPlanet,
-//            Beach,
-//            Reef,
-//            KelpForest,
-//            Abyss,
-//            AquaticAsteroid
+            /* Aquatic Planet Pack */
+            DlcAquaticPlanet,
+            Beach,
+            Reef,
+            KelpForest,
+            Abyss,
+            AquaticAsteroid
+
+            /*
+             * Note: We use Long internally instead of BigInteger.
+             * If strange errors occur, a Long may not be enough anymore.
+             * In that case switch to real BigInteger.
+             */
         )
     }
 }

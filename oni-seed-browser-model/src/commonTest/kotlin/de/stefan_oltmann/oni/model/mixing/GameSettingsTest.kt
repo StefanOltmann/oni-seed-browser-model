@@ -153,9 +153,30 @@ class GameSettingsTest {
         gameSettings.setMixingLevel(MixingItem.DlcFrostyPlanet, MixingLevel.ENABLED)
         gameSettings.setMixingLevel(MixingItem.DlcBionicBooster, MixingLevel.ENABLED)
         gameSettings.setMixingLevel(MixingItem.DlcPrehistoricPlanet, MixingLevel.ENABLED)
+        gameSettings.setMixingLevel(MixingItem.DlcAquaticPlanet, MixingLevel.ENABLED)
 
         assertEquals(
-            expected = "J3ET5",
+            expected = "CKZRH4Y1",
+            actual = gameSettings.getMixingSettingsCode()
+        )
+    }
+
+    /**
+     * Some DLC activated, but none of the remixes.
+     */
+    @Test
+    fun testSomeDlcActivated() {
+
+        val gameSettings = GameSettings()
+
+        for (item in MixingItem.entries)
+            gameSettings.setMixingLevel(item, MixingLevel.DISABLED)
+
+        gameSettings.setMixingLevel(MixingItem.DlcFrostyPlanet, MixingLevel.ENABLED)
+        gameSettings.setMixingLevel(MixingItem.DlcAquaticPlanet, MixingLevel.ENABLED)
+
+        assertEquals(
+            expected = "6C4WI3Y1",
             actual = gameSettings.getMixingSettingsCode()
         )
     }
@@ -177,7 +198,7 @@ class GameSettingsTest {
         }
 
         assertEquals(
-            expected = "VWVP8",
+            expected = "295GB4X2",
             actual = gameSettings.getMixingSettingsCode()
         )
     }
@@ -191,7 +212,7 @@ class GameSettingsTest {
             gameSettings.setMixingLevel(item, MixingLevel.ENABLED)
 
         assertEquals(
-            expected = "70N97",
+            expected = "PE2MEMF2",
             actual = gameSettings.getMixingSettingsCode()
         )
     }
@@ -206,9 +227,33 @@ class GameSettingsTest {
     }
 
     @Test
+    fun testFromRemixCodeSomeDlcActivated() {
+
+        val parsed = GameSettings.fromRemixCode("J5XRH4Y1")
+
+        for (item in MixingItem.entries) {
+
+            val expected = when (item) {
+                MixingItem.DlcFrostyPlanet,
+                MixingItem.DlcBionicBooster,
+                MixingItem.DlcPrehistoricPlanet
+                    -> MixingLevel.ENABLED
+
+                else -> MixingLevel.DISABLED
+            }
+
+            assertEquals(
+                expected = expected,
+                actual = parsed.getMixingLevel(item),
+                message = "Mismatch for $item"
+            )
+        }
+    }
+
+    @Test
     fun testFromRemixCodeAllDlcActivated() {
 
-        val parsed = GameSettings.fromRemixCode("J3ET5")
+        val parsed = GameSettings.fromRemixCode("CKZRH4Y1")
 
         for (item in MixingItem.entries) {
 
@@ -216,7 +261,7 @@ class GameSettingsTest {
                 MixingItem.DlcFrostyPlanet,
                 MixingItem.DlcBionicBooster,
                 MixingItem.DlcPrehistoricPlanet,
-                    // MixingItem.DlcAquaticPlanet
+                MixingItem.DlcAquaticPlanet
                     -> MixingLevel.ENABLED
 
                 else -> MixingLevel.DISABLED
@@ -233,7 +278,7 @@ class GameSettingsTest {
     @Test
     fun testFromRemixCodeAllMixingsGuaranteed() {
 
-        val parsed = GameSettings.fromRemixCode("VWVP8")
+        val parsed = GameSettings.fromRemixCode("295GB4X2")
 
         for (item in MixingItem.entries) {
             val expected = when {
@@ -247,7 +292,7 @@ class GameSettingsTest {
     @Test
     fun testFromRemixCodeAllMixingsLikely() {
 
-        val parsed = GameSettings.fromRemixCode("70N97")
+        val parsed = GameSettings.fromRemixCode("PE2MEMF2")
 
         for (item in MixingItem.entries)
             assertEquals(MixingLevel.ENABLED, parsed.getMixingLevel(item))
