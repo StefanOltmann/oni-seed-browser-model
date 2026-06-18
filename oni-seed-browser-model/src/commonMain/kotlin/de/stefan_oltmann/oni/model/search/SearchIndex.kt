@@ -246,7 +246,8 @@ class SearchIndex(
          */
         val checkedDlcs = mutableSetOf(
             Dlc.FrostyPlanet,
-            Dlc.PrehistoricPlanet
+            Dlc.PrehistoricPlanet,
+            Dlc.AquaticPlanet
         )
 
         @Suppress("unused")
